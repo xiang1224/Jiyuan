@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>吉原洗澡地｜東京吉原・日本泡泡浴專屬接送服務</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="site" id="app">
+        <div class="topline">低調 ✦ 舒適 ✦ 安全　專為成熟男士打造的預約接送服務</div>
+        <header class="header">
+            <div class="wrap nav"><a class="brand" href="#home"><span class="brandmark">吉</span><span class="brandname">吉原洗澡地</span></a>
+                <nav class="links" id="navLinks"><a href="#home">首頁</a><a href="#articles">最新文章</a><a href="#shops">合作店家</a><a href="#destinations">四大泡泡浴區</a><a href="#about">預約接送</a></nav>
+                <div class="nav-actions"><button class="iconbtn" id="searchToggle" aria-label="搜尋文章">⌕</button><button
+                        class="menu-btn" id="menuToggle" aria-label="開啟選單">☰</button></div>
+            </div>
+            <div class="wrap search-panel" id="searchPanel"><input id="searchInput" type="search"
+                    placeholder="搜尋吉原、泡泡浴、接送⋯⋯" aria-label="搜尋文章"></div>
+        </header>
+        <main id="home">
+            <section class="wrap" id="articles">
+                <div class="section-head">
+                    <div>
+                        <div class="section-kicker">LATEST POSTS</div>
+                        <h2>最新文章</h2>
+                    </div><span class="subtle">只給您懂的高級體驗。</span>
+                </div>
+                <div class="filters" id="filters"><button class="filter active" data-cat="全部文章">全部文章</button><button class="filter" data-cat="泡泡浴百科">泡泡浴百科</button><button class="filter" data-cat="文化歷史">文化歷史</button><button class="filter" data-cat="接送服務">接送服務</button></div>
+                <div class="articles" id="articlesGrid"></div>
+            </section>
+            <section class="wrap shops" id="shops">
+                <div class="section-head">
+                    <div>
+                        <div class="section-kicker">PARTNER SHOPS</div>
+                        <h2>合作店家</h2>
+                    </div><span class="subtle">持牌夥伴保證，照片資料依店家授權刊登。</span>
+                </div>
+                <div class="shop-tabs" id="shopTabs"></div>
+                <div class="shop-info" id="shopInfo"></div>
+                <div class="girls-bar"><span id="girlCount"></span><input id="girlSearch" type="search" placeholder="搜尋名字" aria-label="搜尋名字"></div>
+                <div class="girls" id="girlsGrid"></div>
+            </section>
+            <section class="wrap newsletter" id="about">
+                <div>
+                    <div class="section-kicker">BOOKING</div>
+                    <h2>不懂如何在吉原玩？私訊我們預約吧！</h2>
+                    <p>東京⇄吉原｜京都⇄雄琴專車直送。持牌認證、一對一導覽、100% 保密行程，24/7 東京／京都覆蓋，個人／團體皆可預約，提供雙語服務（ENG｜中文）。</p>
+                </div>
+                <div>
+                    <div class="signup"><a class="book-btn" href="https://yoshiwaratravel.com/tw/booking" target="_blank" rel="noopener">立即預約 ↗</a></div>
+                    <div class="signup-note">只給男士的高級體驗　·　香港台灣客人 5 星評級 ⭐</div>
+                </div>
+            </section>
+            <section class="wrap destinations" id="destinations">
+                <div class="section-head">
+                    <div>
+                        <div class="section-kicker">4 MAJOR AREAS</div>
+                        <h2>日本四大泡泡浴區</h2>
+                    </div><span class="subtle">吉原以方便、高級、評價最高，為「CP值最高」的體驗。</span>
+                </div>
+                <div class="dest-grid"><a href="#articles" class="dest" data-open="5"><small>01 / TOKYO</small>
+                        <h3>東京 吉原</h3>
+                        <p>方便、高級、評價最高　↗</p>
+                    </a><a href="#articles" class="dest" data-open="5"><small>02 / GIFU</small>
+                        <h3>岐阜 金津園</h3>
+                        <p>日本四大泡泡浴區之一　↗</p>
+                    </a><a href="#articles" class="dest" data-open="5"><small>03 / SHIGA</small>
+                        <h3>滋賀 雄琴溫泉</h3>
+                        <p>京都⇄雄琴專車直送　↗</p>
+                    </a><a href="#articles" class="dest" data-open="5"><small>04 / FUKUOKA</small>
+                        <h3>福岡 中洲</h3>
+                        <p>日本四大泡泡浴區之一　↗</p>
+                    </a></div>
+            </section>
+        </main>
+        <footer class="footer">
+            <div class="wrap footrow">
+                <div class="brand"><span class="brandmark">吉</span><span class="brandname">吉原洗澡地</span></div>
+                <p>© 2026 吉原洗澡地 | 本站內容僅供年滿 18 歲成人瀏覽。</p>
+                <div class="footlinks"><a href="#home">回到頂部 ↑</a><a href="#articles">最新文章</a><a href="#about">預約接送</a>
+                </div>
+            </div>
+        </footer>
+        <div class="toast" id="toast" role="status"></div>
+        <dialog id="girlDialog" class="gdialog">
+            <div class="gd-head"><span id="gdTitle">在籍資料與出勤表</span><button id="closeGirl" aria-label="關閉">×</button></div>
+            <div class="gd-body" id="girlContent"></div>
+        </dialog>
+        <dialog id="postDialog"
+            style="width:min(760px,calc(100% - 28px));max-height:85vh;overflow:auto;border:1px solid var(--line);border-radius:8px;padding:0;background:var(--surface);color:var(--ink);box-shadow:0 24px 80px #0004">
+            <div
+                style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 22px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--surface)">
+                <span style="font-size:12px;color:var(--red);letter-spacing:.12em">吉原洗澡地</span><button
+                    id="closePost" aria-label="關閉文章"
+                    style="border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:50%;width:36px;height:36px;font-size:20px">×</button>
+            </div>
+            <div id="postContent" style="padding:24px clamp(20px,5vw,44px) 38px;line-height:1.95"></div>
+        </dialog>
+    </div>
+<script src="js/data.js"></script>
+<script src="js/shops.js"></script>
+<script src="js/schedule.js"></script>
+<script src="js/shops-ui.js"></script>
+</body>
+
+</html>
