@@ -1,6 +1,6 @@
 // 鹿鳴館女生資料
 // 格式：[名字, 年齡, 身高cm, 三圍, 顧客評價摘要(可留空), 編號, 新人(true/false，可省略)]
-// 「編號」就是照片與出勤表的檔名／代號（例如 050 → img/rokumeikan/050.jpg、050_1.jpg … 050_5.jpg）。
+// 「編號」就是照片與出勤表的檔名／代號（例如 050 → img/rokumeikan/050.webp、050_1.webp … 050_10.webp）。
 // 編號一旦給了就不要改；新增小姐請用「下一個沒用過的編號」，想排在最前面就把那一行放在最上面，既有照片不會亂掉。
 const ROKU = [
    ["AI", 22, 165, "86(E)-56-86", "", 50, true],
@@ -55,7 +55,7 @@ const ROKU = [
    ["UTA", 21, 155, "90-55-85", "", 49]];
 
 // 聖女（Maria）女生資料：格式同上 [名字, 年齡, 身高cm, 三圍, 顧客評價摘要(可留空), 編號, 新人]
-// 照片放 img/maria/ 資料夾，檔名用「編號」：001.jpg = YUINA、002.jpg = TSUBAKI ……
+// 照片放 img/maria/ 資料夾，檔名用「編號」：001.webp = YUINA、002.webp = TSUBAKI ……
 // 資料來自店家公開名單；三圍與罩杯為網站自述資料，顧客評價摘要依公開評論整理，僅為個人經驗。
 const MARIA = [
    ["YUINA", 21, 160, "88(F)-55-86", "", 1],
@@ -73,8 +73,92 @@ const MARIA = [
    ["HINA", 20, 157, "88(E)-54-85", "可愛、互動親近，可用簡單英文溝通。", 13]];
 
 // 店家清單。之後要新增店家，複製一組放進來，照片放 img/店家id/ 資料夾，並在 schedule.js 加上同樣的店家 id。
-// 照片命名：封面 001.jpg；內文相簿最多 5 張：001_1.jpg … 001_5.jpg
+// 照片命名：封面 001.webp；內文相簿最多 10 張：001_1.webp … 001_10.webp
 const SHOPS = [
-    { id: 'rokumeikan', name: '鹿鳴館', sub: '吉原高級ソープランド', site: 'https://y-rokumeikan.com/', girls: ROKU },
-    { id: 'maria', name: '聖女 Maria', sub: '高級ソープランド 吉原聖女（マリア）｜9:00–24:00（最後預約 22:00）', site: 'https://www.y-maria.jp/main.php', girls: MARIA }
+   { id: 'rokumeikan', name: '鹿鳴館', sub: '吉原高級ソープランド', girls: ROKU },
+   { id: 'maria', name: '聖女 Maria', sub: '高級ソープランド 吉原聖女（マリア）｜9:00–24:00（最後預約 22:00）', girls: MARIA }
 ];
+
+// 聯絡按鈕（顯示在每位小姐的詳細頁）。請把下面三個 url 換成你們真正的連結：
+// LINE：https://line.me/ti/p/你的LINE_ID　　WhatsApp：https://wa.me/國碼+電話（不加 + 與空格，例如 https://wa.me/886912345678）
+// WeChat：沒有通用連結，可放 QR code 頁面或個人名片頁的網址
+const CONTACTS = [
+   { name: 'LINE', cls: 'line', url: 'https://line.me/ti/p/YOUR_LINE_ID' },
+   { name: 'WhatsApp', cls: 'whatsapp', url: 'https://wa.me/YOUR_NUMBER' },
+   { name: 'WeChat', cls: 'wechat', url: 'https://example.com/your-wechat' }
+];
+
+// 每位小姐各自的聯絡方式（沒寫的人，或沒寫的欄位，就使用上面 CONTACTS 的預設連結）。
+// 格式：CONTACT_OVERRIDE['店家id']['編號'] = { line: '連結', whatsapp: '連結', wechat: '連結' }
+// 只想改其中一個也可以，例如只寫 { line: '...' }。
+// 欄位留空白 '' 時，按鈕仍會顯示，連結會使用上面 CONTACTS 的預設值。
+// 下面已列出每位小姐，三個欄位目前都是空白。把這位小姐自己的連結填在引號裡即可。
+const CONTACT_OVERRIDE = {
+   rokumeikan: {
+      '050': { line: '', whatsapp: '', wechat: '' },  // AI
+      '001': { line: '', whatsapp: '', wechat: '' },  // KANAMI
+      '002': { line: '', whatsapp: '', wechat: '' },  // AN
+      '003': { line: '', whatsapp: '', wechat: '' },  // AMANE
+      '004': { line: '', whatsapp: '', wechat: '' },  // MIREI
+      '005': { line: '', whatsapp: '', wechat: '' },  // MIHO
+      '006': { line: '', whatsapp: '', wechat: '' },  // SHIRASAKISAKURA
+      '007': { line: '', whatsapp: '', wechat: '' },  // HONOKA
+      '008': { line: '', whatsapp: '', wechat: '' },  // KAGUYA
+      '009': { line: '', whatsapp: '', wechat: '' },  // SARA
+      '010': { line: '', whatsapp: '', wechat: '' },  // TSUKIHO
+      '011': { line: '', whatsapp: '', wechat: '' },  // TSUBAKI
+      '012': { line: '', whatsapp: '', wechat: '' },  // NATSUMI
+      '013': { line: '', whatsapp: '', wechat: '' },  // MINAMIKAZEHINATSU
+      '014': { line: '', whatsapp: '', wechat: '' },  // TOUGENHINANO
+      '015': { line: '', whatsapp: '', wechat: '' },  // OTOHA
+      '016': { line: '', whatsapp: '', wechat: '' },  // KAEDE
+      '017': { line: '', whatsapp: '', wechat: '' },  // MAKO
+      '018': { line: '', whatsapp: '', wechat: '' },  // NIKO
+      '019': { line: '', whatsapp: '', wechat: '' },  // MIO
+      '020': { line: '', whatsapp: '', wechat: '' },  // HOTARU
+      '021': { line: '', whatsapp: '', wechat: '' },  // RIN
+      '022': { line: '', whatsapp: '', wechat: '' },  // MAIKO
+      '023': { line: '', whatsapp: '', wechat: '' },  // KUDOU NATSUKI
+      '024': { line: '', whatsapp: '', wechat: '' },  // YURA
+      '025': { line: '', whatsapp: '', wechat: '' },  // KURUMI
+      '026': { line: '', whatsapp: '', wechat: '' },  // ITO
+      '027': { line: '', whatsapp: '', wechat: '' },  // YUMEKA
+      '028': { line: '', whatsapp: '', wechat: '' },  // FUWARI
+      '029': { line: '', whatsapp: '', wechat: '' },  // MEME
+      '030': { line: '', whatsapp: '', wechat: '' },  // MINAMI
+      '031': { line: '', whatsapp: '', wechat: '' },  // AOTSUKI ANO
+      '032': { line: '', whatsapp: '', wechat: '' },  // ICHIKA
+      '033': { line: '', whatsapp: '', wechat: '' },  // MIYABI
+      '034': { line: '', whatsapp: '', wechat: '' },  // HINAMI HINATA
+      '035': { line: '', whatsapp: '', wechat: '' },  // MAI
+      '036': { line: '', whatsapp: '', wechat: '' },  // KARINA
+      '037': { line: '', whatsapp: '', wechat: '' },  // RIONA
+      '038': { line: '', whatsapp: '', wechat: '' },  // HIME
+      '039': { line: '', whatsapp: '', wechat: '' },  // SATOMI
+      '040': { line: '', whatsapp: '', wechat: '' },  // MIYUU
+      '041': { line: '', whatsapp: '', wechat: '' },  // YURINA
+      '042': { line: '', whatsapp: '', wechat: '' },  // MOMO
+      '043': { line: '', whatsapp: '', wechat: '' },  // ICHIKI
+      '044': { line: '', whatsapp: '', wechat: '' },  // KUROKI AYUMU
+      '045': { line: '', whatsapp: '', wechat: '' },  // AYA
+      '046': { line: '', whatsapp: '', wechat: '' },  // KOKORO
+      '047': { line: '', whatsapp: '', wechat: '' },  // MOKA
+      '048': { line: '', whatsapp: '', wechat: '' },  // AI-DA
+      '049': { line: '', whatsapp: '', wechat: '' },  // UTA
+   },
+   maria: {
+      '001': { line: '', whatsapp: '', wechat: '' },  // YUINA
+      '002': { line: '', whatsapp: '', wechat: '' },  // TSUBAKI
+      '003': { line: '', whatsapp: '', wechat: '' },  // YUNO
+      '004': { line: '', whatsapp: '', wechat: '' },  // UTA
+      '005': { line: '', whatsapp: '', wechat: '' },  // MANA
+      '006': { line: '', whatsapp: '', wechat: '' },  // YUIKA
+      '007': { line: '', whatsapp: '', wechat: '' },  // NOA
+      '008': { line: '', whatsapp: '', wechat: '' },  // NATSU
+      '009': { line: '', whatsapp: '', wechat: '' },  // MIIHI
+      '010': { line: '', whatsapp: '', wechat: '' },  // RINKA
+      '011': { line: '', whatsapp: '', wechat: '' },  // SATSUKI
+      '012': { line: '', whatsapp: '', wechat: '' },  // KAORI
+      '013': { line: '', whatsapp: '', wechat: '' },  // HINA
+   }
+};
