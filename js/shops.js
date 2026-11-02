@@ -72,11 +72,56 @@ const MARIA = [
    ["KAORI", 20, 158, "87(D)-56-85", "", 12],
    ["HINA", 20, 157, "88(E)-54-85", "可愛、互動親近，可用簡單英文溝通。", 13]];
 
+// ESPERANZA（福岡中洲）女生資料。資料來源：夜遊びヘブン（YOASOBI HEAVEN）公開頁面
+// 格式：[名字, 年齡, 身高cm, 三圍(含罩杯), 顧客評價摘要(可留空), 編號, 新人, 參考價格(最低價), 評論數]
+// 照片放 img/esperanza/ ，檔名同編號：001.webp、001_1.webp …
+const ESPERANZA = [
+   ["YAE", 24, 160, "100(I)-57-85", "", 1, false, "¥64,900起", 19],
+   ["IORI", 25, 153, "93(I)-55-87", "", 2, false, "¥93,000起", 16],
+   ["YUKINO", 24, 165, "89(F)-57-88", "", 3, false, "¥53,900起", 12],
+   ["YUI", 19, 162, "84(E)-54-85", "", 4, false, "¥53,900起", 4],
+   ["IKU", 26, 154, "98(J)-57-92", "", 5, false, "¥64,900起", 25],
+   ["EREN", 25, 160, "92(G)-56-86", "", 6, false, "¥53,900起", 19],
+   ["SHIKI", 24, 160, "85(E)-54-87", "", 7, false, "¥53,900起", 1],
+   ["NANAKA", 23, 158, "89(G)-54-87", "", 8, false, "¥64,900起", null],
+   ["MARIA", 26, 155, "92(H)-55-89", "", 9, false, "¥64,900起", 4],
+   ["KOKO", 24, 160, "84(E)-56-85", "", 10, false, "¥64,900起", 6],
+   ["NADEKO", 25, 167, "90(F)-56-89", "", 11, false, "¥64,900起", 11],
+   ["KAGURA", 23, 160, "90(G)-54-89", "", 12, false, "¥64,900起", 2],
+   ["MIYABI", 28, 166, "90(G)-56-87", "", 13, false, "¥64,900起", 1],
+   ["YUJU", 25, 168, "86(F)-57-91", "", 14, false, "¥64,900起", 6],
+   ["RINKA", 26, 164, "95(I)-54-81", "", 15, false, "¥69,900起", 7],
+   ["MADOKA", 22, 153, "95(I)-55-92", "", 16, false, "¥53,900起", null],
+   ["MOKA", 22, 150, "92(F)-55-85", "", 17, false, "¥53,900起", 9],
+   ["RENA", 22, 154, "80(E)-55-82", "", 18, false, "¥53,900起", null],
+   ["KURUMI", 19, 165, "87(D)-55-88", "", 19, false, "¥53,900起", 10],
+   ["RUKA", 20, 165, "84(D)-54-85", "", 20, false, "¥53,900起", null],
+   ["YURA", 26, 154, "82(E)-55-85", "", 21, false, "¥53,900起", null],
+   ["MIRAI", 20, 147, "85(D)-54-84", "", 22, false, "¥53,900起", null],
+   ["YURIA", 23, 158, "85(C)-56-84", "", 23, false, "¥53,900起", 2],
+   ["NOA", 21, 158, "83(D)-54-82", "", 24, false, "¥53,900起", 8],
+   ["SUI", 24, 159, "87(E)-54-88", "", 25, false, "¥53,900起", 1],
+   ["SUZUKA", 23, 153, "85(B)-54-86", "", 26, false, "¥53,900起", null],
+   ["IROHA", 25, 152, "90(F)-56-88", "", 27, false, "¥53,900起", 2],
+   ["KOKONE", 20, 162, "86(B)-57-87", "", 28, false, "¥53,900起", null],
+   ["ICHIKA", 24, 158, "83(E)-56-84", "", 29, false, "¥53,900起", 2],
+   ["YUU", 23, 157, "85(C)-55-87", "", 30, false, "¥53,900起", null],
+   ["SAHO", 25, 163, "85(D)-56-86", "", 31, false, "¥53,900起", 2],
+   ["ANJU", 24, 157, "92(F)-57-88", "", 32, false, null, null],
+   ["ANON", 23, 158, "83(D)-56-82", "", 33, false, null, null],
+   ["RUNA", 22, 153, "89(F)-56-88", "", 34, false, "¥53,900起", null],
+   ["CHIKA", 27, 162, "82(C)-57-83", "", 35, false, "¥53,900起", 1],
+   ["NANAMI", 24, 150, "90(G)-56-84", "", 36, false, "¥53,900起", null],
+   ["SHINJIN", 20, 170, "92(G)-55-91", "", 37, false, null, null],
+   ["SHIORI", 26, 165, "84(F)-55-86", "", 38, false, null, null],
+   ["KADUKI", 23, 161, "88(E)-57-85", "", 39, false, "¥53,900起", 2]];
+
 // 店家清單。之後要新增店家，複製一組放進來，照片放 img/店家id/ 資料夾，並在 schedule.js 加上同樣的店家 id。
 // 照片命名：封面 001.webp；內文相簿最多 10 張：001_1.webp … 001_10.webp
 const SHOPS = [
-   { id: 'rokumeikan', name: '鹿鳴館', sub: '吉原高級ソープランド', girls: ROKU },
-   { id: 'maria', name: '聖女 Maria', sub: '高級ソープランド 吉原聖女（マリア）｜9:00–24:00（最後預約 22:00）', girls: MARIA }
+   { id: 'rokumeikan', area: '東京吉原', name: '鹿鳴館', sub: '吉原高級ソープランド', girls: ROKU },
+   { id: 'maria', area: '東京吉原', name: '聖女 Maria', sub: '高級ソープランド 吉原聖女（マリア）｜9:00–24:00（最後預約 22:00）', girls: MARIA },
+   { id: 'esperanza', area: '福岡中洲', name: 'ESPERANZA', sub: '福岡中洲｜參考價格為官方頁面最低價（日圓）', girls: ESPERANZA }
 ];
 
 // 聯絡按鈕（顯示在每位小姐的詳細頁）。請把下面三個 url 換成你們真正的連結：
@@ -160,5 +205,46 @@ const CONTACT_OVERRIDE = {
       '011': { line: '', whatsapp: '', wechat: '' },  // SATSUKI
       '012': { line: '', whatsapp: '', wechat: '' },  // KAORI
       '013': { line: '', whatsapp: '', wechat: '' },  // HINA
+   },
+   esperanza: {
+      '001': { line: '', whatsapp: '', wechat: '' },  // YAE
+      '002': { line: '', whatsapp: '', wechat: '' },  // IORI
+      '003': { line: '', whatsapp: '', wechat: '' },  // YUKINO
+      '004': { line: '', whatsapp: '', wechat: '' },  // YUI
+      '005': { line: '', whatsapp: '', wechat: '' },  // IKU
+      '006': { line: '', whatsapp: '', wechat: '' },  // EREN
+      '007': { line: '', whatsapp: '', wechat: '' },  // SHIKI
+      '008': { line: '', whatsapp: '', wechat: '' },  // NANAKA
+      '009': { line: '', whatsapp: '', wechat: '' },  // MARIA
+      '010': { line: '', whatsapp: '', wechat: '' },  // KOKO
+      '011': { line: '', whatsapp: '', wechat: '' },  // NADEKO
+      '012': { line: '', whatsapp: '', wechat: '' },  // KAGURA
+      '013': { line: '', whatsapp: '', wechat: '' },  // MIYABI
+      '014': { line: '', whatsapp: '', wechat: '' },  // YUJU
+      '015': { line: '', whatsapp: '', wechat: '' },  // RINKA
+      '016': { line: '', whatsapp: '', wechat: '' },  // MADOKA
+      '017': { line: '', whatsapp: '', wechat: '' },  // MOKA
+      '018': { line: '', whatsapp: '', wechat: '' },  // RENA
+      '019': { line: '', whatsapp: '', wechat: '' },  // KURUMI
+      '020': { line: '', whatsapp: '', wechat: '' },  // RUKA
+      '021': { line: '', whatsapp: '', wechat: '' },  // YURA
+      '022': { line: '', whatsapp: '', wechat: '' },  // MIRAI
+      '023': { line: '', whatsapp: '', wechat: '' },  // YURIA
+      '024': { line: '', whatsapp: '', wechat: '' },  // NOA
+      '025': { line: '', whatsapp: '', wechat: '' },  // SUI
+      '026': { line: '', whatsapp: '', wechat: '' },  // SUZUKA
+      '027': { line: '', whatsapp: '', wechat: '' },  // IROHA
+      '028': { line: '', whatsapp: '', wechat: '' },  // KOKONE
+      '029': { line: '', whatsapp: '', wechat: '' },  // ICHIKA
+      '030': { line: '', whatsapp: '', wechat: '' },  // YUU
+      '031': { line: '', whatsapp: '', wechat: '' },  // SAHO
+      '032': { line: '', whatsapp: '', wechat: '' },  // ANJU
+      '033': { line: '', whatsapp: '', wechat: '' },  // ANON
+      '034': { line: '', whatsapp: '', wechat: '' },  // RUNA
+      '035': { line: '', whatsapp: '', wechat: '' },  // CHIKA
+      '036': { line: '', whatsapp: '', wechat: '' },  // NANAMI
+      '037': { line: '', whatsapp: '', wechat: '' },  // SHINJIN
+      '038': { line: '', whatsapp: '', wechat: '' },  // SHIORI
+      '039': { line: '', whatsapp: '', wechat: '' },  // KADUKI
    }
 };

@@ -1570,3 +1570,135 @@ button {
 .contact-btn.wechat {
     background: #07c160
 }
+
+/* 合作店家：區域選擇＋店家分頁 */
+.area-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 18px
+}
+
+.area-card {
+    position: relative;
+    text-align: left;
+    padding: 20px 22px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--ink);
+    cursor: pointer;
+    transition: .2s
+}
+
+.area-card small {
+    display: block;
+    font-size: 11px;
+    letter-spacing: .16em;
+    color: var(--red)
+}
+
+.area-card b {
+    display: block;
+    margin: 8px 0 6px;
+    font: 500 26px Georgia, "Noto Serif TC", serif
+}
+
+.area-card span {
+    font-size: 12px;
+    color: var(--muted)
+}
+
+.area-card::after {
+    content: "";
+    position: absolute;
+    left: 22px;
+    right: 22px;
+    bottom: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: .25s
+}
+
+.area-card:hover {
+    border-color: #304c3b
+}
+
+.area-card.active {
+    background: #304c3b;
+    border-color: #304c3b;
+    color: #fff
+}
+
+.area-card.active small {
+    color: var(--gold)
+}
+
+.area-card.active span {
+    color: #ffffffb3
+}
+
+.area-card.active::after {
+    transform: scaleX(1)
+}
+
+.shop-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 8px 8px 16px;
+    border: 1px solid var(--line);
+    border-radius: 30px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 13px;
+    cursor: pointer;
+    transition: .2s
+}
+
+.shop-pill i {
+    font-style: normal;
+    min-width: 24px;
+    padding: 2px 7px;
+    border-radius: 20px;
+    background: var(--line);
+    color: var(--muted);
+    font-size: 11px;
+    text-align: center
+}
+
+.shop-pill:hover {
+    border-color: #304c3b;
+    color: var(--ink)
+}
+
+.shop-pill.active {
+    border-color: var(--red);
+    color: var(--red);
+    box-shadow: inset 0 0 0 1px var(--red)
+}
+
+.shop-pill.active i {
+    background: var(--red);
+    color: #fff
+}
+
+@media(max-width:640px) {
+    .area-tabs {
+        gap: 10px
+    }
+
+    .area-card {
+        padding: 14px 14px 16px
+    }
+
+    .area-card b {
+        font-size: 20px
+    }
+
+    .area-card small {
+        letter-spacing: .1em
+    }
+}
