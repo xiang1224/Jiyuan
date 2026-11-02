@@ -4,14 +4,40 @@
     const areaTabs = document.getElementById('areaTabs'), AREAS = [...new Set(SHOPS.map(s => s.area))];
     const tabs = document.getElementById('shopTabs'), info = document.getElementById('shopInfo'), grid = document.getElementById('girlsGrid'), count = document.getElementById('girlCount');
     const pad = n => String(n).padStart(3, '0');
+    // 隱藏「未來 1 個月內完全沒有出勤」的女生。想關掉就改成 false。
+    const HIDE_NO_SHIFT = true, HIDE_DAYS = 30;
+    function dayVal(shopId, key, d) {
+        const v = ((SCHEDULE[shopId] || {})[key] || {})[ymd(d)], wk = (WEEKLY[shopId] || {})[key];
+        return v !== undefined ? v : (wk ? (wk[d.getDay()] || '休') : undefined);
+    }
+    const _vis = {};
+    function visibleGirls(shop) {
+        const day = ymd(new Date()), c = _vis[shop.id];
+        if (c && c.day === day) return c.list;
+        let anyData = false;
+        const flags = shop.girls.map((g, i) => {
+            const key = pad(g[5] || i + 1); let work = false;
+            for (let k = 0; k < HIDE_DAYS; k++) {
+                const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + k);
+                const v = dayVal(shop.id, key, d);
+                if (v !== undefined) anyData = true;
+                if (v !== undefined && v !== '休') { work = true; break }
+            }
+            return work;
+        });
+        // 該店在未來 1 個月內完全沒有任何出勤資料時（例如班表尚未更新），不做隱藏，避免整間店變空白
+        const list = (HIDE_NO_SHIFT && anyData) ? shop.girls.filter((g, i) => flags[i]) : shop.girls;
+        _vis[shop.id] = { day, list };
+        return list;
+    }
     function draw() {
         const inArea = SHOPS.filter(s => s.area === cur.area);
-        areaTabs.innerHTML = AREAS.map((a, i) => { const m = AREA_META[a] || {}, ss = SHOPS.filter(s => s.area === a), n = ss.reduce((t, s) => t + s.girls.length, 0); return `<button class="area-card${a === cur.area ? ' active' : ''}" data-area="${a}" aria-pressed="${a === cur.area}"><small>${String(i + 1).padStart(2, '0')} / ${m.en || ''}</small><b>${m.name || a}</b><span>${ss.length} 間店　·　${n} 位在籍</span></button>`; }).join('');
+        areaTabs.innerHTML = AREAS.map((a, i) => { const m = AREA_META[a] || {}, ss = SHOPS.filter(s => s.area === a), n = ss.reduce((t, s) => t + visibleGirls(s).length, 0); return `<button class="area-card${a === cur.area ? ' active' : ''}" data-area="${a}" aria-pressed="${a === cur.area}"><small>${String(i + 1).padStart(2, '0')} / ${m.en || ''}</small><b>${m.name || a}</b><span>${ss.length} 間店　·　${n} 位出勤</span></button>`; }).join('');
         tabs.style.display = inArea.length > 1 ? '' : 'none';
-        tabs.innerHTML = inArea.map(s => `<button class="shop-pill${s === cur ? ' active' : ''}" data-id="${s.id}">${s.name}<i>${s.girls.length}</i></button>`).join('');
+        tabs.innerHTML = inArea.map(s => `<button class="shop-pill${s === cur ? ' active' : ''}" data-id="${s.id}">${s.name}<i>${visibleGirls(s).length}</i></button>`).join('');
         info.innerHTML = `<div><b>${cur.name}</b><small>${cur.sub}</small></div><a class="book-btn" href="${BOOKING}" target="_blank" rel="noopener">預約接送 ↗</a>`;
-        const list = cur.girls.map((g, i) => ({ no: g[5] || i + 1, name: g[0], age: g[1], h: g[2], size: g[3], fresh: !!g[6] })).filter(g => g.name.toLowerCase().includes(q.toLowerCase()));
-        count.textContent = `共 ${cur.girls.length} 位${q ? `，符合 ${list.length} 位` : ''}`;
+        const vis = visibleGirls(cur), list = vis.map((g, i) => ({ no: g[5] || i + 1, name: g[0], age: g[1], h: g[2], size: g[3], fresh: !!g[6] })).filter(g => g.name.toLowerCase().includes(q.toLowerCase()));
+        count.textContent = `共 ${vis.length} 位${vis.length < cur.girls.length ? `（已隱藏 ${cur.girls.length - vis.length} 位 ${HIDE_DAYS} 天內無出勤）` : ''}${q ? `，符合 ${list.length} 位` : ''}`;
         grid.innerHTML = list.length ? list.map(g => `<article class="girl" data-no="${g.no}" tabindex="0" role="button" aria-label="查看 ${g.name} 出勤表"><div class="photo"><span class="ph">PHOTO<br>${pad(g.no)}</span><img src="img/${cur.id}/${pad(g.no)}.webp" alt="${g.name}" loading="lazy" onerror="this.remove()"><span class="no">No.${pad(g.no)}</span>${g.fresh ? '<span class="new">NEW</span>' : ''}</div><div class="girl-body"><h3>${g.name}</h3><p>${[g.age ? g.age + ' 歲' : '', g.h ? g.h + ' cm' : ''].filter(Boolean).join('　')}</p><p class="size">${g.size ? 'B-W-H　' + g.size : ''}</p></div></article>`).join('') : '<div class="empty">找不到符合的名字。</div>';
     }
     areaTabs.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; cur = SHOPS.find(s => s.area === b.dataset.area); draw() });
