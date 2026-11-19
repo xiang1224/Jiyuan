@@ -14,8 +14,8 @@
         <header class="header">
             <div class="wrap nav"><a class="brand" href="#home"><span class="brandmark">吉</span><span
                         class="brandname">吉原洗澡地</span></a>
-                <nav class="links" id="navLinks"><a href="#home">首頁</a><a href="#articles">最新文章</a><a
-                        href="#shops">合作店家</a><a href="#destinations">四大泡泡浴區</a><a href="#about">預約接送</a></nav>
+                <nav class="links" id="navLinks"><a href="#shops">合作店家</a><a href="#articles">最新文章</a><a
+                        href="#destinations">四大泡泡浴區</a><a href="#about">預約接送</a></nav>
                 <div class="nav-actions"><button class="iconbtn" id="searchToggle" aria-label="搜尋文章">⌕</button><button
                         class="menu-btn" id="menuToggle" aria-label="開啟選單">☰</button></div>
             </div>
@@ -23,18 +23,6 @@
                     placeholder="搜尋吉原、泡泡浴、接送⋯⋯" aria-label="搜尋文章"></div>
         </header>
         <main id="home">
-            <section class="wrap" id="articles">
-                <div class="section-head">
-                    <div>
-                        <div class="section-kicker">LATEST POSTS</div>
-                        <h2>最新文章</h2>
-                    </div><span class="subtle">只給您懂的高級體驗。</span>
-                </div>
-                <div class="filters" id="filters"><button class="filter active" data-cat="全部文章">全部文章</button><button
-                        class="filter" data-cat="泡泡浴百科">泡泡浴百科</button><button class="filter"
-                        data-cat="文化歷史">文化歷史</button><button class="filter" data-cat="接送服務">接送服務</button></div>
-                <div class="articles" id="articlesGrid"></div>
-            </section>
             <section class="wrap shops" id="shops">
                 <div class="section-head">
                     <div>
@@ -48,6 +36,19 @@
                 <div class="girls-bar"><span id="girlCount"></span><input id="girlSearch" type="search"
                         placeholder="搜尋名字" aria-label="搜尋名字"></div>
                 <div class="girls" id="girlsGrid"></div>
+            </section>
+            <section class="wrap" id="articles">
+                <div class="section-head">
+                    <div>
+                        <div class="section-kicker">LATEST POSTS</div>
+                        <h2>最新文章</h2>
+                    </div><span class="subtle">只給您懂的高級體驗。</span>
+                </div>
+                <div class="filters" id="filters"><button class="filter" data-cat="泡泡浴百科">泡泡浴百科</button><button
+                        class="filter" data-cat="文化歷史">文化歷史</button><button class="filter"
+                        data-cat="接送服務">接送服務</button><button class="filter active" data-cat="全部文章">全部文章</button>
+                </div>
+                <div class="articles" id="articlesGrid"></div>
             </section>
             <section class="wrap newsletter" id="about">
                 <div>
